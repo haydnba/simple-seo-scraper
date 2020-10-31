@@ -1,0 +1,14 @@
+{
+  "name": "puppeteer-scraper-fac-odp",
+  "version": "1.0.0",
+  "description": "Basic web scraper using Puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "haydn.appleby@joingsg.com",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^5.4.1"
+  }
+}
