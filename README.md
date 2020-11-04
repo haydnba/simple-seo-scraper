@@ -10,9 +10,9 @@
 
 - Request a page using http client lib and then parse the response using regular
   expressions to extract the data you are looking for...
-- As above but use a lib such as (JSDom)[https://www.npmjs.com/package/jsdom] to
-  parse the response and structure into a virtual DOM...
-- Use (Puppeteer)[https://pptr.dev] to run headless (or headful) chrome and use
+- As above but use a lib such as [JSDom](https://www.npmjs.com/package/jsdom) to
+  structure the response as an interactive virtual DOM...
+- Use [Puppeteer](https://pptr.dev) to run headless (or headful) chrome and use
   the interface it provides to interact with the browser DOM...
 
 
@@ -25,8 +25,8 @@
 
 #### Resources
 
-https://pptr.dev/#?product=Puppeteer&version=v5.4.1
-https://developers.google.com/web/tools/puppeteer/
+https://pptr.dev/#?product=Puppeteer&version=v5.4.1 <br>
+https://developers.google.com/web/tools/puppeteer/ <br>
 https://theheadless.dev/posts/basics-scraping/
 
 
