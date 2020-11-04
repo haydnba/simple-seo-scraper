@@ -1,6 +1,11 @@
 ## A Basic Web Scraper implemented using Puppeteer
 
 
+### Running the Scraper
+
+- `npm i`
+- `npm run start`
+
 #### Options for creating a web scraper in in Node.js are:
 
 - Request a page using http client lib and then parse the response using regular
@@ -34,6 +39,7 @@ left for later... If you make a lot of progress, there are many improvements to
 be made such as:
 
 - better error handling
+- improve the data selection - on some sites we do not access all the items
 - modularise the project (a `scraper.ts` module, a `browser.ts` module etc.)
 - extract functionality into reusable functions
 - provide a way to process the input list in batches (instead of just selecting
@@ -43,6 +49,6 @@ be made such as:
 
 #### NOTES
 
-> Everythign in Puppeteer is a Promise
+> Everything in Puppeteer is a Promise
 > Watch out for handing of multiple async actions
 > Watch out for method of passing arguments to puppeteer `page.evaluate`...

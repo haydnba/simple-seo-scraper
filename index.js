@@ -26,7 +26,8 @@ urls.map(async url => {
 
   try {
     // Try to launch the browser instance
-    const browser = await puppeteer.launch({
+    // Access will be disallowed to headless mode on some sites...
+    browser = await puppeteer.launch({
       // headless: false
     })
   } catch {
