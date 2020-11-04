@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 
 const data = require('./urls.json').data
-const urls = data.map(url => new URL(url).origin).slice(0, 20)
+const urls = data.map(url => new URL(url).origin).slice(0, 10)
 
 // List of social media platforms
 const socials = [
@@ -15,29 +15,59 @@ const socials = [
 
 urls.map(async url => {
 
-  // Try to launch the browser and exit on fail
-  const browser = await puppeteer.launch({
-    // headless:false
-  }).catch(() => undefined)
+  let browser
+  let page
 
-  if (!browser) {
+  /**
+   * Launching the browser instance.
+   *
+   * https://pptr.dev/#?product=Puppeteer&version=v5.4.1&show=api-puppeteerlaunchoptions
+   */
+
+  try {
+    // Try to launch the browser instance
+    const browser = await puppeteer.launch({
+      // headless: false
+    })
+  } catch {
+    // Exit on failure
     return
   }
 
-  let page
+  /**
+   * Loading browser tabs.
+   *
+   * https://pptr.dev/#?product=Puppeteer&version=v5.4.1&show=api-browsernewpage
+   * https://pptr.dev/#?product=Puppeteer&version=v5.4.1&show=api-pagegotourl-options
+   */
 
-  // Retrieve the 'robots.txt'
-  page = await browser.newPage()
-  await page.goto(`${url}/robots.txt`)
-  // Here, we could parse the robots.txt to ensure we have
-  // permission to proceed with scraping data we are interested in
-  // but let's just pretend for now...
-  const permissions = await page.content()
-  await page.close()
+  try {
+    // Retrieve the 'robots.txt'
+    page = await browser.newPage()
+    await page.goto(`${url}/robots.txt`)
+    // Here, we could parse the robots.txt to ensure we have
+    // permission to proceed with scraping data we are interested in
+    // but let's just pretend for now...
+    const _permissions = await page.content()
+    await page.close()
+  } catch {
+    // Absorb any exception and continue
+  }
 
-  // Open the home page
-  page = await browser.newPage()
-  await page.goto(url)
+  try {
+    // Open the home page
+    page = await browser.newPage()
+    await page.goto(url)
+  } catch {
+    // Exit if the page load times-out etc.
+    return
+  }
+
+  /**
+   * Evaluating JS in the page context.
+   *
+   * https://pptr.dev/#?product=Puppeteer&version=v5.4.1&show=api-pageevaluatepagefunction-args
+   */
 
   // Retrieve the page title
   const title = await page.evaluate(() => {
@@ -65,7 +95,7 @@ urls.map(async url => {
   // Close the browser instance
   await browser.close()
 
-  // Write out the data - should be serialised as JSON...
+  // Write out the data - could be serialised as JSON...
   console.log({
     title,
     description,
@@ -73,5 +103,3 @@ urls.map(async url => {
   })
 
 })
-
-
