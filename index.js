@@ -61,7 +61,8 @@ urls.map(async url => {
     page = await browser.newPage()
     await page.goto(url)
   } catch {
-    // Exit if the page load times-out etc.
+    // Close browser and exit if the page load times-out etc.
+    await browser.close()
     return
   }
 
