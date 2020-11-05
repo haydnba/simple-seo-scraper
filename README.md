@@ -39,7 +39,8 @@ left for later... If you make a lot of progress, there are many improvements to
 be made such as:
 
 - better error handling
-- improve the data selection - on some sites we do not access all the items
+- on some sites we do not yes successfully access all the items
+- parse the robots.txt and behave accordingly
 - modularise the project (a `scraper.ts` module, a `browser.ts` module etc.)
 - extract functionality into reusable functions
 - provide a way to process the input list in batches (instead of just selecting

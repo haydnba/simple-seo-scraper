@@ -44,6 +44,7 @@ urls.map(async url => {
 
   try {
     // Retrieve the 'robots.txt'
+    // https://support.google.com/webmasters/answer/6062608?hl=en
     page = await browser.newPage()
     await page.goto(`${url}/robots.txt`)
     // Here, we could parse the robots.txt to ensure we have
